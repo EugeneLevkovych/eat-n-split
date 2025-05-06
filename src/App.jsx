@@ -1,15 +1,22 @@
 import FriendsList from './components/FriendsList';
-import FotmAddFriend from './components/FormAddFriend';
+import FormAddFriend from './components/FormAddFriend';
 import Button from './components/Button';
 import FormSplitBill from './components/FormSplitBill';
+import { useState } from 'react';
 
 export default function App() {
+const [showAddFriend, setShowAddFriend] = useState(false)
+
+function handleShowAddFriend() {
+  setShowAddFriend((show) => !show)
+}
+
   return (
    <div className='app'>
     <div className='sidebar'>
     <FriendsList />
-    <FotmAddFriend />
-    <Button>Add friend</Button>
+    {showAddFriend && <FormAddFriend />}
+    <Button onClick={handleShowAddFriend}>Add friend</Button>
     </div>
     <FormSplitBill />
    </div>
